@@ -16,6 +16,7 @@ MonoBehaviour:
   m_rightKey: 275
   m_upKey: 273
   m_downKey: 274
+  m_pausedKey: 27
   m_confirmKey: 99
   m_cancelKey: 120
   m_primaryKey: 99

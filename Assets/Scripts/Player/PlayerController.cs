@@ -40,6 +40,26 @@ public class PlayerController : MonoBehaviour {
 			gameObject.SetActive(false);
 			return;
 		}
+
+		if (!GameManager.Player) GameManager.Player = this;
+
+		Schedule.onTimerEnd += OnGameTimerEnd;
+		Schedule.AddToSchedule(OnPlayerStruggle, 3);
+	}
+
+	private void OnDestroy() {
+		if (GameManager.Player == this) GameManager.Player = null;
+
+		Schedule.onTimerEnd -= OnGameTimerEnd;
+		Schedule.RemoveFromSchedule(OnPlayerStruggle, 3);
+	}
+
+	private void OnGameTimerEnd() {
+		Debug.Log("Player is dead");
+	}
+
+	private void OnPlayerStruggle() {
+		Debug.Log("Player is struggling");
 	}
 
 	private void Update() {
@@ -47,6 +67,9 @@ public class PlayerController : MonoBehaviour {
 			if (Right) m_spr.flipX = false;
 			else if (Left) m_spr.flipX = true;
 		}
+
+		if (m_input.SecondaryPressed) GameManager.TimeScale = 20f;
+		else if (m_input.SecondaryReleased) GameManager.TimeScale = 1f;
 	}
 
 	private void FixedUpdate() {
@@ -65,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void DoMovement() {
-		float delta = Time.fixedDeltaTime;
+		float delta = GameManager.FixedDeltaTime;
 		Vector2 vel = m_body.velocity;
 		float hacceldelta = m_hAcceleration * delta;
 
