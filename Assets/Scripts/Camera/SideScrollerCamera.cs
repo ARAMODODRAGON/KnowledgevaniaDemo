@@ -16,6 +16,12 @@ public class SideScrollerCamera : MonoBehaviour {
 			pos.y = m_target.transform.position.y + m_verticalFollowDistance;
 			transform.position = pos;
 		}
+
+		if (GameManager.SSCamera == null) GameManager.SSCamera = this;
+	}
+
+	private void OnDestroy() {
+		if (GameManager.SSCamera == this) GameManager.SSCamera = null;
 	}
 
 	private void LateUpdate() {

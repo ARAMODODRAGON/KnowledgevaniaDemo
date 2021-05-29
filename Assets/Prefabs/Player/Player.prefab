@@ -52,9 +52,6 @@ MonoBehaviour:
   m_vAcceleration: 20
   m_vMaxFallSpeed: 30
   m_vJumpSpeed: 12.3
-  m_groundMask:
-    serializedVersion: 2
-    m_Bits: 128
   m_groundCheckAccuracy: 0.9
 --- !u!212 &1037600692
 SpriteRenderer:
@@ -93,8 +90,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -138551361
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 3542127132570728493, guid: 93328a88f9ea0b441b69da90318a903d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

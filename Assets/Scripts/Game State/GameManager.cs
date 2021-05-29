@@ -6,6 +6,8 @@ public static class GameManager {
 
 	public static PlayerController Player { get; set; } = null;
 
+	public static SideScrollerCamera SSCamera { get; set; } = null;
+
 	// the pause state of the game
 	public static bool IsPaused { get; set; } = false;
 

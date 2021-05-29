@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 	private bool Down => (m_input ? m_input.Down : false);
 	private bool lastPrimaryState = false;
 	private bool Primary => (m_input ? m_input.Primary : false);
+	private bool SecondaryPressed => m_input.SecondaryPressed;
 
 	// references
 
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private float m_vMaxFallSpeed;
 	[SerializeField] private float m_vJumpSpeed;
 
+	// interactions
+	private List<Interactable> m_interactables = new List<Interactable>();
+	
 	// collision
 
 	//private List<Collision2D> m_collisions = new List<Collision2D>();
@@ -68,8 +72,14 @@ public class PlayerController : MonoBehaviour {
 			else if (Left) m_spr.flipX = true;
 		}
 
-		if (m_input.SecondaryPressed) GameManager.TimeScale = 20f;
-		else if (m_input.SecondaryReleased) GameManager.TimeScale = 1f;
+		// check for interaction
+		if (SecondaryPressed && m_interactables.Count > 0) {
+			Interactable i = m_interactables[m_interactables.Count - 1];
+			i.OnInteract(this); 
+		}
+
+		//if (m_input.SecondaryPressed) GameManager.TimeScale = 20f;
+		//else if (m_input.SecondaryReleased) GameManager.TimeScale = 1f;
 	}
 
 	private void FixedUpdate() {
@@ -112,7 +122,7 @@ public class PlayerController : MonoBehaviour {
 			else vel.x -= hacceldelta;
 		}
 
-		if (IsGrounded && (Primary && !lastPrimaryState)) {
+		if (IsGrounded && (Primary && !lastPrimaryState) && KnowledgeInventory.Contains("Jump")) {
 			vel.y = m_vJumpSpeed;
 		}
 
@@ -138,11 +148,27 @@ public class PlayerController : MonoBehaviour {
 		//}
 	}
 
-	//private void OnCollisionEnter2D(Collision2D collision) {
-	//	m_collisions.Add(collision);
-	//}
-	
-	//private void OnCollisionExit2D(Collision2D collision) {
-	//	m_collisions.Remove(collision);
-	//}
+	private void OnTriggerEnter2D(Collider2D collision) {
+		Interactable inter = collision.GetComponent<Interactable>();
+		if (inter != null) {
+			m_interactables.Add(inter);
+			inter.OnEnterRange(this);
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision) {
+		Interactable inter = collision.GetComponent<Interactable>();
+		if (inter != null) {
+			m_interactables.Remove(inter);
+			inter.OnExitRange(this);
+		}
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision) {
+		//m_collisions.Add(collision);
+	}
+
+	private void OnCollisionExit2D(Collision2D collision) {
+		//m_collisions.Remove(collision);
+	}
 }
