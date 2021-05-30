@@ -354,8 +354,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_canvasObject: {fileID: 4003813691030270051}
   m_canvasText: {fileID: 1148384177}
-  m_dialogueText: "Want to learn how to jump? \nPress X and I will teach you!"
+  m_preTeachDialogueText: 'Want to learn how to jump?
+
+    Press <b>X</b> and I will
+    teach you'
   m_knowledgeToTeach: Jump
+  m_postTeachDialogueText: Press <b>C</b> to jump!
 --- !u!61 &4003813692002513840
 BoxCollider2D:
   m_ObjectHideFlags: 0

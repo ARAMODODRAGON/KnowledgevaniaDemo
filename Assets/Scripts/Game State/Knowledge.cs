@@ -76,27 +76,29 @@ static class KnowledgeInventory {
 	// returns false on failure
 	public static void Learn(string name, object obj = null) {
 		Knowledge knowledge = new Knowledge(name, obj);
+		string lowername = name.ToLower();
 		// check if null
 		if (knowledge == Knowledge.Null) {
 			Debug.LogError("Knowledge was null");
 		}
 		// add it
-		if (!s_knowledge.ContainsKey(knowledge.name)) {
+		if (!s_knowledge.ContainsKey(lowername)) {
 			OnLearnedKnowledge?.Invoke(ref knowledge);
-			s_knowledge.Add(knowledge.name, knowledge);
+			s_knowledge.Add(lowername, knowledge);
 		}
 		// error
 		else {
-			Debug.LogError($"KnowledgeInventory already had knowledge of name {knowledge.name}");
+			Debug.LogError($"KnowledgeInventory already had knowledge of name {lowername}");
 		}
 	}
 
 	// removes knowledge
 	// returns true on success
 	public static bool Forget(string name) {
-		if (s_knowledge.ContainsKey(name)) {
-			Knowledge knowledge = s_knowledge[name];
-			s_knowledge.Remove(name);
+		string lowername = name.ToLower();
+		if (s_knowledge.ContainsKey(lowername)) {
+			Knowledge knowledge = s_knowledge[lowername];
+			s_knowledge.Remove(lowername);
 			OnForgottenKnowledge?.Invoke(ref knowledge);
 			return true;
 		}
@@ -105,13 +107,13 @@ static class KnowledgeInventory {
 
 	// checks if the knowledge exists
 	public static bool Contains(string name) {
-		return s_knowledge.ContainsKey(name);
+		return s_knowledge.ContainsKey(name.ToLower());
 	}
 
 	// finds and returns a piece of knowledge by name
 	public static Knowledge Get(string name) {
 		try {
-			return s_knowledge[name];
+			return s_knowledge[name.ToLower()];
 		}
 		// failed
 		catch (KeyNotFoundException) {

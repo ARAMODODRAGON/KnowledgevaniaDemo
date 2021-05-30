@@ -2858,17 +2858,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4003813692002513841, guid: a3f68cbee1671054497cf15cb94a150d, type: 3}
-      propertyPath: m_preTeachDialogueText
-      value: 'Want to learn how to jump?
-
-        Press <b>X</b> and I will teach
-        you'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003813692002513841, guid: a3f68cbee1671054497cf15cb94a150d, type: 3}
-      propertyPath: m_postTeachDialogueText
-      value: Press <b>C</b> to jump!
-      objectReference: {fileID: 0}
     - target: {fileID: 4003813692002513842, guid: a3f68cbee1671054497cf15cb94a150d, type: 3}
       propertyPath: m_RootOrder
       value: 3
