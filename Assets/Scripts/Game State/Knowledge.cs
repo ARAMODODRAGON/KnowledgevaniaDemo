@@ -66,6 +66,12 @@ static class KnowledgeInventory {
 	// invoked after the knowledge is removed from the inventory
 	public static KnowledgeChangeEvent OnForgottenKnowledge = null;
 
+	// returns a ValueCollection to enumerate through the values
+	public static Dictionary<string, Knowledge>.ValueCollection Values => s_knowledge.Values;
+
+	// returns a KeyCollection to enumerate through the keys
+	public static Dictionary<string, Knowledge>.KeyCollection Keys => s_knowledge.Keys;
+
 	// adds knowledge to the inventory
 	// returns false on failure
 	public static void Learn(string name, object obj = null) {

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 57393914}
   - component: {fileID: 57393913}
   - component: {fileID: 57393912}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2806,36 +2806,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7243614978247613766, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
   m_PrefabInstance: {fileID: 7243614979150928629}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1699312822 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1699312822, guid: efc9ab40ff87335469a6c0b1744792c7, type: 3}
-  m_PrefabInstance: {fileID: 8429929499128541608}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1699312824 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1699312824, guid: efc9ab40ff87335469a6c0b1744792c7, type: 3}
-  m_PrefabInstance: {fileID: 8429929499128541608}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699312822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1699312826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699312822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62fb014f443bba644ad57d29670088c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_learnedText: {fileID: 1699312824}
-  m_textTime: 5
 --- !u!1 &2006217929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,6 +2864,10 @@ PrefabInstance:
 
         Press <b>X</b> and I will teach
         you'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003813692002513841, guid: a3f68cbee1671054497cf15cb94a150d, type: 3}
+      propertyPath: m_postTeachDialogueText
+      value: Press <b>C</b> to jump!
       objectReference: {fileID: 0}
     - target: {fileID: 4003813692002513842, guid: a3f68cbee1671054497cf15cb94a150d, type: 3}
       propertyPath: m_RootOrder
@@ -3013,6 +2987,14 @@ PrefabInstance:
       propertyPath: m_target
       value: 
       objectReference: {fileID: 573308323}
+    - target: {fileID: 1699312824, guid: efc9ab40ff87335469a6c0b1744792c7, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699312826, guid: efc9ab40ff87335469a6c0b1744792c7, type: 3}
+      propertyPath: m_textTimeOffset
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8429929498703628584, guid: efc9ab40ff87335469a6c0b1744792c7, type: 3}
       propertyPath: m_RootOrder
       value: 0

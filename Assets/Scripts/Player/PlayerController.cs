@@ -27,14 +27,30 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private float m_vMaxFallSpeed;
 	[SerializeField] private float m_vJumpSpeed;
 
+	[Header("Layers")]
+	[SerializeField] private LayerMask m_damageLayermask;
+
+	[Header("Other")]
+	[SerializeField] private float m_timeToRestartAfterDeath;
+
 	// interactions
 	private List<Interactable> m_interactables = new List<Interactable>();
-	
+
 	// collision
 
 	//private List<Collision2D> m_collisions = new List<Collision2D>();
-	public bool IsGrounded { get; private set; } = false;
 	[SerializeField] private float m_groundCheckAccuracy = 0.9f;
+
+	// state
+
+	public enum PlayerState : byte {
+		Alive,
+		Dead
+	}
+
+	public bool IsGrounded { get; private set; } = false;
+	public PlayerState State { get; private set; } = PlayerState.Alive;
+	private float m_timerToRestart = 0f;
 
 	private void Awake() {
 		m_body = GetComponent<Rigidbody2D>();
@@ -75,7 +91,7 @@ public class PlayerController : MonoBehaviour {
 		// check for interaction
 		if (SecondaryPressed && m_interactables.Count > 0) {
 			Interactable i = m_interactables[m_interactables.Count - 1];
-			i.OnInteract(this); 
+			i.OnInteract(this);
 		}
 
 		//if (m_input.SecondaryPressed) GameManager.TimeScale = 20f;
@@ -83,8 +99,19 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		CheckGrounded();
-		DoMovement();
+		// is alive
+		if (State == PlayerState.Alive) {
+			CheckGrounded();
+			DoMovement();
+		} 
+		// is dead
+		else if (State == PlayerState.Dead) {
+			m_body.velocity = Vector2.zero;
+			m_timerToRestart -= GameManager.FixedDeltaTime;
+			if (m_timerToRestart <= 0f) {
+				GameManager.RestartGame();
+			}
+		}
 
 		lastPrimaryState = Primary;
 	}
@@ -165,10 +192,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision) {
-		//m_collisions.Add(collision);
+		// check for damage
+		if ((m_damageLayermask.value & (1 << collision.gameObject.layer)) != 0) {
+			State = PlayerState.Dead;
+			m_timerToRestart = m_timeToRestartAfterDeath;
+			m_spr.enabled = false;
+		}
 	}
 
-	private void OnCollisionExit2D(Collision2D collision) {
-		//m_collisions.Remove(collision);
-	}
 }

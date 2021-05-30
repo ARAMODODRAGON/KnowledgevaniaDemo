@@ -52,6 +52,10 @@ MonoBehaviour:
   m_vAcceleration: 20
   m_vMaxFallSpeed: 30
   m_vJumpSpeed: 12.3
+  m_damageLayermask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_timeToRestartAfterDeath: 3
   m_groundCheckAccuracy: 0.9
 --- !u!212 &1037600692
 SpriteRenderer:

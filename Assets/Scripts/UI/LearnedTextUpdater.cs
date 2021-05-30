@@ -10,6 +10,7 @@ class LearnedTextUpdater : MonoBehaviour {
 
 	// timer
 	[SerializeField] private float m_textTime;
+	[SerializeField] private float m_textTimeOffset;
 
 	// state
 	bool isDirty = true;
@@ -24,6 +25,16 @@ class LearnedTextUpdater : MonoBehaviour {
 	private void Awake() {
 		KnowledgeInventory.OnLearnedKnowledge += OnLearnedKnowledge;
 		KnowledgeInventory.OnForgottenKnowledge += OnForgottenKnowledge;
+
+		// make sure to update with any remembered knowledge
+		float timer = m_textTime;
+		foreach (Knowledge kn in KnowledgeInventory.Values) {
+			Learned learned;
+			learned.timer = timer;
+			timer += m_textTimeOffset;
+			learned.text = $"<color=green>+ Knowledge remembered: \"{kn.name}\"</color>";
+			m_learnedList.Add(learned);
+		}
 	}
 
 	private void OnDestroy() {
