@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimerHandler : MonoBehaviour {
+public class TimerHandler : ActivateOnEvent {
 
 	// references
 	[SerializeField] private Text m_timerText = null;
-
-	// timer variables
-	[SerializeField] private float m_initialTime = 0f;
 
 	// check last time to update timer
 	private float m_lastTime = 0f;
@@ -24,7 +21,10 @@ public class TimerHandler : MonoBehaviour {
 		}
 		Schedule.onTimerReset += OnTimerReset;
 
-		Schedule.ResetTimer(m_initialTime);
+		// decide if the timer should show up
+		if (!KnowledgeInventory.Contains("Timer")) {
+			m_timerText.enabled = false;
+		}
 	}
 
 	private void OnDestroy() {
@@ -38,15 +38,24 @@ public class TimerHandler : MonoBehaviour {
 	private void Update() {
 		Schedule.UpdateTimer();
 
-		// reset the timer
-		if (Input.GetKeyDown(KeyCode.G)) Schedule.ResetTimer(m_initialTime);
+		// debug stuff
+		if (Input.GetKeyDown(KeyCode.G)) Schedule.ResetTimer(180);
+		if (Input.GetKey(KeyCode.H)) GameManager.TimeScale = 10f;
+		else GameManager.TimeScale = 1f;
 	}
 
 	private void LateUpdate() {
 		// update the text
-		if (Mathf.Abs(m_lastTime - Schedule.Timer) > 0.001f) {
+		if (m_timerText.enabled && Mathf.Abs(m_lastTime - Schedule.Timer) > 0.001f) {
 			m_lastTime = Schedule.Timer;
 			m_timerText.text = $"Time: {Schedule.TotalMinutes}:{Schedule.Seconds}";
+		}
+	}
+
+	protected override void OnActivate() {
+		// decide if the timer should show up
+		if (!KnowledgeInventory.Contains("Timer")) {
+			m_timerText.enabled = false;
 		}
 	}
 }

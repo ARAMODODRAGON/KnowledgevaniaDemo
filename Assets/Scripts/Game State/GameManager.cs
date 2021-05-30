@@ -24,6 +24,12 @@ public static class GameManager {
 	// built in fixeddeltatime thats scaled by the GameTimeScale
 	public static float FixedDeltaTime => Time.fixedDeltaTime * TimeScale * PausedScale;
 
+	// built in deltatime thats unscaled
+	public static float UnscaledDeltaTime => Time.deltaTime;
+
+	// built in fixeddeltatime thats unscaled
+	public static float UnscaledFixedDeltaTime => Time.fixedDeltaTime;
+
 	// restarts the level, always loads level in slot 0
 	// removes quests but does not remove knowledge
 	public static void RestartGame() {

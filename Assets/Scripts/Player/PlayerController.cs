@@ -17,9 +17,11 @@ public class PlayerController : MonoBehaviour {
 
 	// references
 
+	[SerializeField] GameObject m_camera;
 	private Rigidbody2D m_body = null;
 	private BoxCollider2D m_box = null;
 	private SpriteRenderer m_spr = null;
+	[SerializeField] private ActivateOnEvent m_fadeOutEvent;
 
 	[Header("Movement")]
 	[SerializeField] private float m_hAcceleration;
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour {
 
 	[Header("Other")]
 	[SerializeField] private float m_timeToRestartAfterDeath;
+	[SerializeField] private float m_fallTimeToAutoDie;
 
 	// interactions
 	private List<Interactable> m_interactables = new List<Interactable>();
@@ -45,14 +48,10 @@ public class PlayerController : MonoBehaviour {
 
 	// state
 
-	public enum PlayerState : byte {
-		Alive,
-		Dead
-	}
-
+	public bool IsDead { get; private set; } = false;
 	public bool IsGrounded { get; private set; } = false;
-	public PlayerState State { get; private set; } = PlayerState.Alive;
 	private float m_timerToRestart = 0f;
+	private float m_fallTimer = 0f;
 
 	private void Awake() {
 		m_body = GetComponent<Rigidbody2D>();
@@ -64,25 +63,16 @@ public class PlayerController : MonoBehaviour {
 			return;
 		}
 
-		if (!GameManager.Player) GameManager.Player = this;
+		// detach camera
+		if (m_camera) {
+			m_camera.transform.parent = null;
+		}
 
-		Schedule.onTimerEnd += OnGameTimerEnd;
-		Schedule.AddToSchedule(OnPlayerStruggle, 3);
+		if (!GameManager.Player) GameManager.Player = this;
 	}
 
 	private void OnDestroy() {
 		if (GameManager.Player == this) GameManager.Player = null;
-
-		Schedule.onTimerEnd -= OnGameTimerEnd;
-		Schedule.RemoveFromSchedule(OnPlayerStruggle, 3);
-	}
-
-	private void OnGameTimerEnd() {
-		Debug.Log("Player is dead");
-	}
-
-	private void OnPlayerStruggle() {
-		Debug.Log("Player is struggling");
 	}
 
 	private void Update() {
@@ -103,16 +93,25 @@ public class PlayerController : MonoBehaviour {
 
 	private void FixedUpdate() {
 		// is alive
-		if (State == PlayerState.Alive) {
+		if (!IsDead) {
 			CheckGrounded();
 			DoMovement();
+
+			if (!IsGrounded) {
+				m_fallTimer += GameManager.FixedDeltaTime;
+				if (m_fallTimer > m_fallTimeToAutoDie) {
+					IsDead = true;
+					m_timerToRestart = m_timeToRestartAfterDeath;
+					m_spr.enabled = false;
+				}
+			}
 		}
 		// is dead
-		else if (State == PlayerState.Dead) {
+		else if (m_timerToRestart > 0f) {
 			m_body.velocity = Vector2.zero;
 			m_timerToRestart -= GameManager.FixedDeltaTime;
 			if (m_timerToRestart <= 0f) {
-				GameManager.RestartGame();
+				m_fadeOutEvent.Activate();
 			}
 		}
 
@@ -212,7 +211,7 @@ public class PlayerController : MonoBehaviour {
 
 		// check for damage
 		if ((m_damageLayermask.value & (1 << collision.gameObject.layer)) != 0) {
-			State = PlayerState.Dead;
+			IsDead = true;
 			m_timerToRestart = m_timeToRestartAfterDeath;
 			m_spr.enabled = false;
 		}
