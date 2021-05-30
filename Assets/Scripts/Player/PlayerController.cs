@@ -40,8 +40,8 @@ public class PlayerController : MonoBehaviour {
 	// collision
 
 	//private List<Collision2D> m_collisions = new List<Collision2D>();
-	[SerializeField] private float m_groundCheckAccuracy = 0.9f;
-	[SerializeField] private ContactFilter2D m_groundMask;
+	[SerializeField] private float m_groundCheckAccuracy;
+	[SerializeField] private ContactFilter2D m_groundFilter;
 
 	// state
 
@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour {
 
 		IsGrounded = false;
 		List<ContactPoint2D> contacts = new List<ContactPoint2D>();
-		m_body.GetContacts(m_groundMask, contacts);
+		m_body.GetContacts(m_groundFilter, contacts);
 
 		for (int i = 0; i < contacts.Count; i++) {
 			ContactPoint2D co = contacts[i];
