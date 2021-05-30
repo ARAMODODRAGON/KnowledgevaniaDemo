@@ -2915,6 +2915,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5994507995805286541, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
+      propertyPath: m_groundMask.useLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994507995805286541, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
+      propertyPath: m_groundMask.maxNormalAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994507995805286541, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
+      propertyPath: m_groundMask.minNormalAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994507995805286541, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
+      propertyPath: m_groundMask.useNormalAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994507995805286541, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
+      propertyPath: m_groundMask.layerMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 7243614978247613761, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
       propertyPath: m_RootOrder
       value: 1

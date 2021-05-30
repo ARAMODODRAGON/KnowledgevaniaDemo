@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	// references
 
 	private Rigidbody2D m_body = null;
+	private BoxCollider2D m_box = null;
 	private SpriteRenderer m_spr = null;
 
 	[Header("Movement")]
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour {
 
 	//private List<Collision2D> m_collisions = new List<Collision2D>();
 	[SerializeField] private float m_groundCheckAccuracy = 0.9f;
+	[SerializeField] private ContactFilter2D m_groundMask;
 
 	// state
 
@@ -54,8 +56,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void Awake() {
 		m_body = GetComponent<Rigidbody2D>();
+		m_box = GetComponent<BoxCollider2D>();
 		m_spr = GetComponent<SpriteRenderer>();
-		if (!m_body || !m_spr) {
+		if (!m_body || !m_box || !m_spr) {
 			Debug.LogError("Missing components!");
 			gameObject.SetActive(false);
 			return;
@@ -103,7 +106,7 @@ public class PlayerController : MonoBehaviour {
 		if (State == PlayerState.Alive) {
 			CheckGrounded();
 			DoMovement();
-		} 
+		}
 		// is dead
 		else if (State == PlayerState.Dead) {
 			m_body.velocity = Vector2.zero;
@@ -162,7 +165,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void CheckGrounded() {
-		IsGrounded = true;
+		//IsGrounded = true;
 		//IsGrounded = false;
 		//foreach (Collision2D coll in m_collisions) {
 		//	for (int i = 0; i < coll.contactCount; i++) {
@@ -173,6 +176,18 @@ public class PlayerController : MonoBehaviour {
 		//		}
 		//	}
 		//}
+
+		IsGrounded = false;
+		List<ContactPoint2D> contacts = new List<ContactPoint2D>();
+		m_body.GetContacts(m_groundMask, contacts);
+
+		for (int i = 0; i < contacts.Count; i++) {
+			ContactPoint2D co = contacts[i];
+			if (Vector2.Dot(co.normal, Vector2.up) > m_groundCheckAccuracy) {
+				IsGrounded = true;
+				return;
+			}
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
@@ -192,12 +207,20 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision) {
+		// add collision
+		//m_collisions.Add(collision);
+
 		// check for damage
 		if ((m_damageLayermask.value & (1 << collision.gameObject.layer)) != 0) {
 			State = PlayerState.Dead;
 			m_timerToRestart = m_timeToRestartAfterDeath;
 			m_spr.enabled = false;
 		}
+	}
+
+	private void OnCollisionExit2D(Collision2D collision) {
+		// remove collision
+		//m_collisions.Remove(collision);
 	}
 
 }
