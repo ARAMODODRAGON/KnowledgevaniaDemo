@@ -11,7 +11,7 @@ public class TeacherPerson : Interactable {
 
 	// text & knowledge to teach
 	[SerializeField] [Multiline] private string m_preTeachDialogueText;
-	[SerializeField] private string m_knowledgeToTeach;
+	[SerializeField] private Knowledge m_knowledgeToTeach;
 	[SerializeField] [Multiline] private string m_postTeachDialogueText;
 
 	// state

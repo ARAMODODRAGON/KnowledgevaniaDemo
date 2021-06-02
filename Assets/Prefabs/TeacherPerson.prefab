@@ -145,9 +145,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 1
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 41
+    m_MaxSize: 1
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -358,7 +358,9 @@ MonoBehaviour:
 
     Press <b>X</b> and I will
     teach you'
-  m_knowledgeToTeach: Jump
+  m_knowledgeToTeach:
+    name: Jump
+    type: 1
   m_postTeachDialogueText: Press <b>C</b> to jump!
 --- !u!61 &4003813692002513840
 BoxCollider2D:

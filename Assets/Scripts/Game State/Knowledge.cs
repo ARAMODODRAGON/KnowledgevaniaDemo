@@ -3,12 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum KnowledgeType : byte {
+	Other, Ability, Event, Skill, None = byte.MaxValue
+}
+
+[Serializable]
 struct Knowledge : IEquatable<Knowledge> {
 	public string name;
+	public KnowledgeType type;
 	public object data;
 
-	public Knowledge(string name_, object data_) {
+	public Knowledge(string name_, KnowledgeType type_ = KnowledgeType.None, object data_ = null) {
 		name = name_;
+		type = type_;
 		data = data_;
 	}
 
@@ -16,9 +23,28 @@ struct Knowledge : IEquatable<Knowledge> {
 		get {
 			Knowledge knowledge;
 			knowledge.name = null;
+			knowledge.type = KnowledgeType.None;
 			knowledge.data = null;
 			return knowledge;
 		}
+	}
+
+	public bool IsNull => Equals(Null);
+	public bool IsOther => type == KnowledgeType.Other;
+	public bool IsAbility => type == KnowledgeType.Ability;
+	public bool IsEvent => type == KnowledgeType.Event;
+	public bool IsSkill => type == KnowledgeType.Skill;
+	public bool IsNone => type == KnowledgeType.None;
+
+	// returns the time if this is a event knowledge type
+	// returns -1 if this is not an event
+	// throws NullReferenceException if there was no attached time info found
+	public int EventTime() {
+		if (type == KnowledgeType.Event) {
+			if (data is int a) return a;
+			throw new NullReferenceException();
+		}
+		return -1;
 	}
 
 	#region Inherited Functions
@@ -74,22 +100,28 @@ static class KnowledgeInventory {
 
 	// adds knowledge to the inventory
 	// returns false on failure
-	public static void Learn(string name, object obj = null) {
-		Knowledge knowledge = new Knowledge(name, obj);
-		string lowername = name.ToLower();
+	public static bool Learn(string name, KnowledgeType type = KnowledgeType.Other, object data = null) {
+		return Learn(new Knowledge(name, type, data));
+	}
+
+	// adds knowledge to the inventory
+	// returns false on failure
+	public static bool Learn(Knowledge knowledge) {
+		string lowername = knowledge.name.ToLower();
 		// check if null
-		if (knowledge == Knowledge.Null) {
+		if (knowledge == Knowledge.Null)
 			Debug.LogError("Knowledge was null");
-		}
 		// add it
 		if (!s_knowledge.ContainsKey(lowername)) {
 			OnLearnedKnowledge?.Invoke(ref knowledge);
 			s_knowledge.Add(lowername, knowledge);
+			return true;
 		}
 		// error
-		else {
-			Debug.LogError($"KnowledgeInventory already had knowledge of name {lowername}");
-		}
+		else Debug.LogError($"KnowledgeInventory already had knowledge of name {lowername}");
+
+		// failure
+		return false;
 	}
 
 	// removes knowledge

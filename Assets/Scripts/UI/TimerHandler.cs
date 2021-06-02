@@ -22,7 +22,8 @@ public class TimerHandler : ActivateOnEvent {
 		Schedule.onTimerReset += OnTimerReset;
 
 		// decide if the timer should show up
-		if (!KnowledgeInventory.Contains("Timer")) {
+		Knowledge timer = KnowledgeInventory.Get("Timer");
+		if (!timer.IsSkill) {
 			m_timerText.enabled = false;
 		}
 	}

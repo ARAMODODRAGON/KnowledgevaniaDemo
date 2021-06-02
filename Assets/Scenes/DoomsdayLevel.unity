@@ -637,8 +637,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1765911105}
   - component: {fileID: 1765911106}
+  - component: {fileID: 1765911107}
   m_Layer: 0
-  m_Name: LearnAboutTimerEvent
+  m_Name: LearnAboutTimerAndDoomsdayEvent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,7 +674,29 @@ MonoBehaviour:
   m_chainEvent: {fileID: 1944569039}
   m_eventType: 1
   m_timeToActivate: 0
-  m_knowledgeToLearn: Timer
+  m_knowledgeToLearn:
+    name: Timer
+    type: 3
+  m_timeOfEvent: -1
+--- !u!114 &1765911107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765911104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22721a5b205bc3c49ba37235a7d99419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_chainEvent: {fileID: 0}
+  m_eventType: 1
+  m_timeToActivate: 0
+  m_knowledgeToLearn:
+    name: Doomsday
+    type: 2
+  m_timeOfEvent: -1
 --- !u!1001 &1944569038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -728,6 +751,18 @@ PrefabInstance:
     - target: {fileID: 7243614978247613766, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243614978832917130, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.052954778
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243614978832917130, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.052954778
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243614978832917130, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.3207547
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72aa2d8cd22f50b40a4e3ce8ed07eb1f, type: 3}

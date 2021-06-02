@@ -32,7 +32,7 @@ class LearnedTextUpdater : MonoBehaviour {
 			Learned learned;
 			learned.timer = timer;
 			timer += m_textTimeOffset;
-			learned.text = $"<color=green>+ Knowledge remembered: \"{kn.name}\"</color>";
+			learned.text = $"<color=green>+ {TypeName(kn)} remembered: \"{kn.name}\"</color>";
 			m_learnedList.Add(learned);
 		}
 	}
@@ -78,7 +78,7 @@ class LearnedTextUpdater : MonoBehaviour {
 
 	private void OnLearnedKnowledge(ref Knowledge knowledge) {
 		Learned learned;
-		learned.text = $"<color=green>+ Knowleadge learned: \"{knowledge.name}\"</color>";
+		learned.text = $"<color=green>+ {TypeName(knowledge)} learned: \"{knowledge.name}\"</color>";
 		learned.timer = m_textTime;
 		m_learnedList.Add(learned);
 		isDirty = true;
@@ -86,10 +86,14 @@ class LearnedTextUpdater : MonoBehaviour {
 
 	private void OnForgottenKnowledge(ref Knowledge knowledge) {
 		Learned learned;
-		learned.text = $"<color=red>- Knowleadge forgotten: \"{knowledge.name}\"</color>";
+		learned.text = $"<color=red>- {TypeName(knowledge)} forgotten: \"{knowledge.name}\"</color>";
 		learned.timer = m_textTime;
 		m_learnedList.Add(learned);
 		isDirty = true;
 	}
 
+	private string TypeName(Knowledge knowledge) {
+		if (knowledge.IsOther) return "Knowleadge";
+		return knowledge.type.ToString();
+	}
 }

@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (!GameManager.Player) GameManager.Player = this;
+
 	}
 
 	private void OnDestroy() {
