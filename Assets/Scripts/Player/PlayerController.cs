@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour {
 			CheckGrounded();
 			DoMovement();
 
+			// countdown
 			if (!IsGrounded) {
 				m_fallTimer += GameManager.FixedDeltaTime;
 				if (m_fallTimer > m_fallTimeToAutoDie) {
@@ -105,7 +106,9 @@ public class PlayerController : MonoBehaviour {
 					m_timerToRestart = m_timeToRestartAfterDeath;
 					m_spr.enabled = false;
 				}
-			}
+			} 
+			// reset timer
+			else m_fallTimer = 0f;
 		}
 		// is dead
 		else if (m_timerToRestart > 0f) {

@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: -4810244237682102619
     second: Spikes_3
+  - first:
+      213: -3644641957871353732
+    second: Spikes_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -107,7 +110,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -132,7 +135,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -157,7 +160,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -182,7 +185,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -198,6 +201,35 @@ TextureImporter:
       bones: []
       spriteID: 5aea6120a549e3db0800000000000000
       internalID: -4810244237682102619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: -7}
+        - {x: -7, y: 7}
+        - {x: 7, y: 7}
+        - {x: 7, y: -7}
+      physicsShape:
+      - - {x: -7, y: -7}
+        - {x: -7, y: 7}
+        - {x: 7, y: 7}
+        - {x: 7, y: -7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c70089f0371ab6dc0800000000000000
+      internalID: -3644641957871353732
       vertices: []
       indices: 
       edges: []

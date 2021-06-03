@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_chainEvent: {fileID: 1187645485237851420}
+  m_activateOnce: 0
   m_eventType: 0
   m_timeToActivate: 0
 --- !u!1 &7243614978247613766
@@ -203,6 +204,10 @@ PrefabInstance:
       propertyPath: m_target
       value: 
       objectReference: {fileID: 7243614978247613766}
+    - target: {fileID: 411336355, guid: efc9ab40ff87335469a6c0b1744792c7, type: 3}
+      propertyPath: m_horizontalFollowDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6302188524356879622, guid: efc9ab40ff87335469a6c0b1744792c7, type: 3}
       propertyPath: m_chainEvent
       value: 

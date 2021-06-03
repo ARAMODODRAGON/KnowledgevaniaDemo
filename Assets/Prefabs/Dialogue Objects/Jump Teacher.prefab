@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1360354951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557162312256549158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1e542fe28de494a92d7e0cc53bd9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dialogue: []
+  m_hideDialogueOnEnd: 0
+  m_endDialogueOnLeave: 0
+  m_nextAction: 1
+  m_knowledgeCheck:
+    name: Jump
+    type: 1
+  m_successOptionalEvent: {fileID: 0}
+  m_successOptionalDialogue: {fileID: 1360354952}
+  m_failedOptionalEvent: {fileID: 0}
+  m_failedOptionalDialogue: {fileID: 1360354953}
+--- !u!114 &1360354952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557162312256549158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1e542fe28de494a92d7e0cc53bd9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dialogue:
+  - text: Oh you already know how to <b>jump</b>?
+    optionalEvent: {fileID: 0}
+  m_hideDialogueOnEnd: 0
+  m_endDialogueOnLeave: 0
+  m_nextAction: 0
+  m_knowledgeCheck:
+    name: 
+    type: 0
+  m_successOptionalEvent: {fileID: 0}
+  m_successOptionalDialogue: {fileID: 0}
+  m_failedOptionalEvent: {fileID: 0}
+  m_failedOptionalDialogue: {fileID: 0}
+--- !u!114 &1360354953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557162312256549158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1e542fe28de494a92d7e0cc53bd9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dialogue:
+  - text: 'Want to learn how to <b>jump</b>?
+
+      Press <b>X</b> and I will teach
+      you'
+    optionalEvent: {fileID: 1360354954}
+  - text: Press <b>C</b> to jump!
+    optionalEvent: {fileID: 0}
+  m_hideDialogueOnEnd: 0
+  m_endDialogueOnLeave: 0
+  m_nextAction: 0
+  m_knowledgeCheck:
+    name: 
+    type: 0
+  m_successOptionalEvent: {fileID: 0}
+  m_successOptionalDialogue: {fileID: 0}
+  m_failedOptionalEvent: {fileID: 0}
+  m_failedOptionalDialogue: {fileID: 0}
+--- !u!114 &1360354954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557162312256549158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22721a5b205bc3c49ba37235a7d99419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_chainEvent: {fileID: 0}
+  m_eventType: 0
+  m_timeToActivate: 0
+  m_knowledgeToLearn:
+    name: Jump
+    type: 1
+  m_timeOfEvent: -1
+--- !u!1001 &3370274659927383775
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2990089820882186233, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_Name
+      value: Jump Teacher
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5111752
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542712771998594814, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_dialogueTree
+      value: 
+      objectReference: {fileID: 1360354951}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+--- !u!1 &557162312256549158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2990089820882186233, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+  m_PrefabInstance: {fileID: 3370274659927383775}
+  m_PrefabAsset: {fileID: 0}

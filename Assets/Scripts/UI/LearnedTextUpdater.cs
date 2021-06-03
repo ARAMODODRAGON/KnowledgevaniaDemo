@@ -93,7 +93,7 @@ class LearnedTextUpdater : MonoBehaviour {
 	}
 
 	private string TypeName(Knowledge knowledge) {
-		if (knowledge.IsOther) return "Knowleadge";
+		if (knowledge.IsOther) return "Knowledge";
 		return knowledge.type.ToString();
 	}
 }
