@@ -29,6 +29,7 @@ class LearnedTextUpdater : MonoBehaviour {
 		// make sure to update with any remembered knowledge
 		float timer = m_textTime;
 		foreach (Knowledge kn in KnowledgeInventory.Values) {
+			if (kn.IsHidden) continue;
 			Learned learned;
 			learned.timer = timer;
 			timer += m_textTimeOffset;
@@ -77,6 +78,7 @@ class LearnedTextUpdater : MonoBehaviour {
 	}
 
 	private void OnLearnedKnowledge(ref Knowledge knowledge) {
+		if (knowledge.IsHidden) return;
 		Learned learned;
 		learned.text = $"<color=green>+ {TypeName(knowledge)} learned: \"{knowledge.name}\"</color>";
 		learned.timer = m_textTime;
@@ -85,6 +87,7 @@ class LearnedTextUpdater : MonoBehaviour {
 	}
 
 	private void OnForgottenKnowledge(ref Knowledge knowledge) {
+		if (knowledge.IsHidden) return;
 		Learned learned;
 		learned.text = $"<color=red>- {TypeName(knowledge)} forgotten: \"{knowledge.name}\"</color>";
 		learned.timer = m_textTime;

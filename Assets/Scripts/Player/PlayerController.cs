@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 	private float m_timerToRestart = 0f;
 	private float m_fallTimer = 0f;
 
-	private bool m_canDash = false;
+	private int m_dashCount = 1;
 	private float m_dashTimer = 0f;
 	private bool m_canJumpDuringDash = false;
 
@@ -124,10 +124,11 @@ public class PlayerController : MonoBehaviour {
 			i.OnInteract(this);
 		}
 
-		//if (Input.GetKeyDown(KeyCode.I)) {
-		//	KnowledgeInventory.Learn("Jump", KnowledgeType.Ability);
-		//	KnowledgeInventory.Learn("Dash", KnowledgeType.Ability);
-		//}
+		if (Input.GetKeyDown(KeyCode.I)) {
+			KnowledgeInventory.Learn("Jump", KnowledgeType.Ability);
+			KnowledgeInventory.Learn("Dash", KnowledgeType.Ability);
+			KnowledgeInventory.Learn("Double Dash", KnowledgeType.Ability);
+		}
 		//if (m_input.SecondaryPressed) GameManager.TimeScale = 20f;
 		//else if (m_input.SecondaryReleased) GameManager.TimeScale = 1f;
 	}
@@ -173,8 +174,13 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void DoMovement() {
+		if (GameManager.IsPaused || Mathf.Abs(GameManager.TimeScale) <= 0.001f) {
+			return;
+		}
+
 		float delta = GameManager.FixedDeltaTime;
 		Vector2 vel = m_body.velocity;
+		int maxdashes = (KnowledgeInventory.Contains("Double Dash") ? 2 : 1);
 
 		float vacceleration = ((Primary || vel.y < 0f) ? m_vAcceleration : m_vFastAcceleration);
 
@@ -188,15 +194,18 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			// falling stuff
-			if (vel.y < -m_vMaxFallSpeed) vel.y = -m_vMaxFallSpeed;
-			else vel.y -= vacceleration * delta;
+			if (vel.y < -m_vMaxFallSpeed) {
+				vel.y = -m_vMaxFallSpeed;
+			} else {
+				vel.y -= vacceleration * delta;
+			}
 
 			if (KnowledgeInventory.Contains("Dash")) {
 				// dash starting stuff
-				if (IsGrounded && !IsDashing) m_canDash = true;
-				if (m_canDash && (Teritary && !lastTeritaryState)) {
+				if (IsGrounded && !IsDashing) m_dashCount = maxdashes;
+				if ((m_dashCount > 0) && (Teritary && !lastTeritaryState)) {
 					// start dash
-					m_canDash = false;
+					m_dashCount--;
 					m_dashTimer = m_dashDistance / m_dashSpeed;
 					IsDashing = true;
 					m_canJumpDuringDash = IsGrounded;
@@ -214,7 +223,7 @@ public class PlayerController : MonoBehaviour {
 				KnowledgeInventory.Contains("Jump")) {
 				vel.y = m_vJumpSpeed;
 				m_dashTimer = 0f;
-				m_canDash = true;
+				m_dashCount = maxdashes;
 				m_canJumpDuringDash = false;
 			}
 

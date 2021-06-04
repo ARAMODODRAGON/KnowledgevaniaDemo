@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 enum KnowledgeType : byte {
-	Other, Ability, Event, Skill, None = byte.MaxValue
+	Other, Ability, Event, Skill, Hidden, None = byte.MaxValue
 }
 
 [Serializable]
@@ -34,6 +34,7 @@ struct Knowledge : IEquatable<Knowledge> {
 	public bool IsAbility => type == KnowledgeType.Ability;
 	public bool IsEvent => type == KnowledgeType.Event;
 	public bool IsSkill => type == KnowledgeType.Skill;
+	public bool IsHidden => type == KnowledgeType.Hidden;
 	public bool IsNone => type == KnowledgeType.None;
 
 	// returns the time if this is a event knowledge type

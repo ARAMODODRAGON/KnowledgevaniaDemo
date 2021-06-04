@@ -69,6 +69,7 @@ MonoBehaviour:
   m_hAcceleration: 65
   m_hMaxSpeed: 10
   m_vAcceleration: 30
+  m_vFastAcceleration: 120
   m_vMaxFallSpeed: 30
   m_vJumpSpeed: 12.3
   m_dashSpeed: 14
@@ -77,7 +78,7 @@ MonoBehaviour:
   m_damageLayermask:
     serializedVersion: 2
     m_Bits: 256
-  m_colorCyclesPerSecond: 3
+  m_colorCyclesPerSecond: 0.3
   m_timeToRestartAfterDeath: 1.2
   m_fallTimeToAutoDie: 10
   m_groundCheckAccuracy: 0.9

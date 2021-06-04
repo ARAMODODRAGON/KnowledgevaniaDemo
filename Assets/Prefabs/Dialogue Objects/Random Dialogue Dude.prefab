@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1952727052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8543094257509715697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1e542fe28de494a92d7e0cc53bd9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dialogue:
+  - text: 'Hell yea brother,
+
+      Cheers from Iraq.'
+    optionalEvent: {fileID: 0}
+  m_hideDialogueOnEnd: 0
+  m_endDialogueOnLeave: 0
+  m_nextAction: 0
+  m_knowledgeCheck:
+    name: 
+    type: 0
+  m_successOptionalEvent: {fileID: 0}
+  m_successOptionalDialogue: {fileID: 0}
+  m_failedOptionalEvent: {fileID: 0}
+  m_failedOptionalDialogue: {fileID: 0}
+--- !u!1001 &6913522610504098056
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 349932606, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186233, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_Name
+      value: Random Dialogue Dude
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -38.449
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 19.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542712771998594814, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_dialogueTree
+      value: 
+      objectReference: {fileID: 1952727052}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+--- !u!1 &8543094257509715697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2990089820882186233, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+  m_PrefabInstance: {fileID: 6913522610504098056}
+  m_PrefabAsset: {fileID: 0}

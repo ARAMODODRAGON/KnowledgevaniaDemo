@@ -33,8 +33,7 @@ public static class GameManager {
 	// restarts the level, always loads level in slot 0
 	// removes quests but does not remove knowledge
 	public static void RestartGame() {
-		QuestTracker.Reset();
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(1);
 	}
 
 }

@@ -13,6 +13,8 @@ class Schedule {
 	// when the timer gets reset
 	public static TimerEvent onTimerReset = null;
 
+	public static bool PauseTimer { get; set; } = false;
+
 	// a built in timer used for the level
 	// counts down
 	public static float Timer { get; private set; } = 0f;
@@ -29,7 +31,8 @@ class Schedule {
 	// return the current hours remaining
 	public static int Hours => System.TimeSpan.FromSeconds(Timer).Hours;
 
-	// checks if the timer is still counting down
+	// returns if the timer is still counting down
+	// does not check if PauseTimer is true
 	public static bool IsTimerActive { get; private set; } = false;
 
 	// reset the GameTimer
@@ -45,12 +48,14 @@ class Schedule {
 
 	// update the GameTimer with GameManager.DeltaTime
 	public static void UpdateTimer() {
+		if (PauseTimer) return;
 		Timer -= GameManager.DeltaTime;
 		CheckTimer();
 	}
 
 	// update the GameTimer with GameManager.FixedDeltaTime
 	public static void FixedUpdateTimer() {
+		if (PauseTimer) return;
 		Timer -= GameManager.FixedDeltaTime;
 		CheckTimer();
 	}
