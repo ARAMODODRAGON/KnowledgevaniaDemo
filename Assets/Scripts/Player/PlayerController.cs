@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	[ContextMenu("Learn Jump")]
+	private void LearnJump() {
+		KnowledgeInventory.Learn("Jump", KnowledgeType.Ability);
+	}
+
+	[ContextMenu("Learn Dash")]
+	private void LearnDash() {
+		KnowledgeInventory.Learn("Dash", KnowledgeType.Ability);
+	}
+
 	// input
 
 	[SerializeField] private InputHandler m_input = null;
@@ -14,6 +24,8 @@ public class PlayerController : MonoBehaviour {
 	private bool lastPrimaryState = false;
 	private bool Primary => (m_input ? m_input.Primary : false);
 	private bool SecondaryPressed => m_input.SecondaryPressed;
+	private bool lastTeritaryState = false;
+	private bool Teritary => m_input.Tertiary;
 
 	// references
 
@@ -27,13 +39,18 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private float m_hAcceleration;
 	[SerializeField] private float m_hMaxSpeed;
 	[SerializeField] private float m_vAcceleration;
+	[SerializeField] private float m_vFastAcceleration;
 	[SerializeField] private float m_vMaxFallSpeed;
 	[SerializeField] private float m_vJumpSpeed;
+	[SerializeField] private float m_dashSpeed;
+	[SerializeField] private float m_dashAcceleration;
+	[SerializeField] private float m_dashDistance;
 
 	[Header("Layers")]
 	[SerializeField] private LayerMask m_damageLayermask;
 
 	[Header("Other")]
+	[SerializeField] private float m_colorCyclesPerSecond;
 	[SerializeField] private float m_timeToRestartAfterDeath;
 	[SerializeField] private float m_fallTimeToAutoDie;
 
@@ -50,8 +67,15 @@ public class PlayerController : MonoBehaviour {
 
 	public bool IsDead { get; private set; } = false;
 	public bool IsGrounded { get; private set; } = false;
+	public bool IsDashing { get; private set; } = false;
 	private float m_timerToRestart = 0f;
 	private float m_fallTimer = 0f;
+
+	private bool m_canDash = false;
+	private float m_dashTimer = 0f;
+	private bool m_canJumpDuringDash = false;
+
+	private float m_colorTimer = 0f;
 
 	private void Awake() {
 		m_body = GetComponent<Rigidbody2D>();
@@ -77,9 +101,21 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void Update() {
-		if (Right != Left) {
+		// flip sprite
+		if (Right != Left && !IsDashing) {
 			if (Right) m_spr.flipX = false;
 			else if (Left) m_spr.flipX = true;
+		}
+
+		// color change if dashing
+		if (IsDashing) {
+			m_colorTimer += GameManager.DeltaTime;
+			if (m_colorTimer > m_colorCyclesPerSecond) m_colorTimer -= m_colorCyclesPerSecond;
+			m_spr.color = Color.HSVToRGB(m_colorTimer / m_colorCyclesPerSecond, 1f, 1f);
+		}
+		// no color change
+		else {
+			m_spr.color = Color.white;
 		}
 
 		// check for interaction
@@ -88,11 +124,16 @@ public class PlayerController : MonoBehaviour {
 			i.OnInteract(this);
 		}
 
+		//if (Input.GetKeyDown(KeyCode.I)) {
+		//	KnowledgeInventory.Learn("Jump", KnowledgeType.Ability);
+		//	KnowledgeInventory.Learn("Dash", KnowledgeType.Ability);
+		//}
 		//if (m_input.SecondaryPressed) GameManager.TimeScale = 20f;
 		//else if (m_input.SecondaryReleased) GameManager.TimeScale = 1f;
 	}
 
 	private void FixedUpdate() {
+		if (GameManager.IsPaused) return;
 		// is alive
 		if (!IsDead) {
 			CheckGrounded();
@@ -106,7 +147,7 @@ public class PlayerController : MonoBehaviour {
 					m_timerToRestart = m_timeToRestartAfterDeath;
 					m_spr.enabled = false;
 				}
-			} 
+			}
 			// reset timer
 			else m_fallTimer = 0f;
 		}
@@ -120,6 +161,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		lastPrimaryState = Primary;
+		lastTeritaryState = Teritary;
 	}
 
 	private bool NearlyEqual(float a, float b, float perc = 0.01f) {
@@ -133,18 +175,72 @@ public class PlayerController : MonoBehaviour {
 	private void DoMovement() {
 		float delta = GameManager.FixedDeltaTime;
 		Vector2 vel = m_body.velocity;
-		float hacceldelta = m_hAcceleration * delta;
+
+		float vacceleration = ((Primary || vel.y < 0f) ? m_vAcceleration : m_vFastAcceleration);
+
+		// only when not dashing
+		if (!IsDashing) {
+
+			// jump stuff
+			if (IsGrounded && (Primary && !lastPrimaryState) &&
+				KnowledgeInventory.Contains("Jump")) {
+				vel.y = m_vJumpSpeed;
+			}
+
+			// falling stuff
+			if (vel.y < -m_vMaxFallSpeed) vel.y = -m_vMaxFallSpeed;
+			else vel.y -= vacceleration * delta;
+
+			if (KnowledgeInventory.Contains("Dash")) {
+				// dash starting stuff
+				if (IsGrounded && !IsDashing) m_canDash = true;
+				if (m_canDash && (Teritary && !lastTeritaryState)) {
+					// start dash
+					m_canDash = false;
+					m_dashTimer = m_dashDistance / m_dashSpeed;
+					IsDashing = true;
+					m_canJumpDuringDash = IsGrounded;
+					vel.y = 0f;
+				}
+			}
+
+		}
+		// when dashing
+		else {
+			m_dashTimer -= GameManager.FixedDeltaTime;
+
+			// jump stuff
+			if ((IsGrounded || m_canJumpDuringDash) && (Primary && !lastPrimaryState) &&
+				KnowledgeInventory.Contains("Jump")) {
+				vel.y = m_vJumpSpeed;
+				m_dashTimer = 0f;
+				m_canDash = true;
+				m_canJumpDuringDash = false;
+			}
+
+			// end dash
+			if (m_dashTimer <= 0f) {
+				m_dashTimer = 0f;
+				IsDashing = false;
+				m_canJumpDuringDash = false;
+			}
+		}
+
+		float hacceldelta = (!IsDashing ? m_hAcceleration : m_dashAcceleration) * delta;
+		float hmaxspeed = (!IsDashing ? m_hMaxSpeed : m_dashSpeed);
+		bool left = (!IsDashing ? Left : m_spr.flipX);
+		bool right = (!IsDashing ? Right : !m_spr.flipX);
 
 		// move left or right
-		if (Left != Right) {
-			if (Left) {
-				if (NearlyEqual(vel.x, -m_hMaxSpeed, hacceldelta)) vel.x = -m_hMaxSpeed;
-				else if (vel.x > -m_hMaxSpeed) vel.x -= hacceldelta;
+		if (left != right) {
+			if (left) {
+				if (NearlyEqual(vel.x, -hmaxspeed, hacceldelta)) vel.x = -hmaxspeed;
+				else if (vel.x > -hmaxspeed) vel.x -= hacceldelta;
 				else vel.x += hacceldelta;
 			}
-			if (Right) {
-				if (NearlyEqual(vel.x, m_hMaxSpeed, hacceldelta)) vel.x = m_hMaxSpeed;
-				else if (vel.x < m_hMaxSpeed) vel.x += hacceldelta;
+			if (right) {
+				if (NearlyEqual(vel.x, hmaxspeed, hacceldelta)) vel.x = hmaxspeed;
+				else if (vel.x < hmaxspeed) vel.x += hacceldelta;
 				else vel.x -= hacceldelta;
 			}
 		}
@@ -154,13 +250,6 @@ public class PlayerController : MonoBehaviour {
 			else if (vel.x < 0f) vel.x += hacceldelta;
 			else vel.x -= hacceldelta;
 		}
-
-		if (IsGrounded && (Primary && !lastPrimaryState) && KnowledgeInventory.Contains("Jump")) {
-			vel.y = m_vJumpSpeed;
-		}
-
-		if (vel.y < -m_vMaxFallSpeed) vel.y = -m_vMaxFallSpeed;
-		else vel.y -= m_vAcceleration * delta;
 
 		// set the new velocity
 		m_body.velocity = vel;

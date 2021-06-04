@@ -1,92 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1675876452
+--- !u!114 &1234568770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8831404379647104812}
+  m_GameObject: {fileID: 1873900493546860789}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1e542fe28de494a92d7e0cc53bd9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_dialogue:
-  - text: Whats the Secret Code?
-    optionalEvent: {fileID: 0}
+  m_dialogue: []
   m_hideDialogueOnEnd: 0
   m_endDialogueOnLeave: 0
   m_nextAction: 1
   m_knowledgeCheck:
-    name: Secret Code
-    type: 0
-  m_successOptionalEvent: {fileID: 1675876454}
-  m_successOptionalDialogue: {fileID: 2575935598978123904}
-  m_failedOptionalEvent: {fileID: 0}
-  m_failedOptionalDialogue: {fileID: 1675876453}
---- !u!114 &1675876453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8831404379647104812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a1e542fe28de494a92d7e0cc53bd9c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_dialogue:
-  - text: "What the fuck did you just fucking \nsay to me you little fucker?"
-    optionalEvent: {fileID: 0}
-  m_hideDialogueOnEnd: 0
-  m_endDialogueOnLeave: 1
-  m_nextAction: 0
-  m_knowledgeCheck:
-    name: 
-    type: 0
+    name: Dash
+    type: 1
   m_successOptionalEvent: {fileID: 0}
-  m_successOptionalDialogue: {fileID: 0}
+  m_successOptionalDialogue: {fileID: 1234568773}
   m_failedOptionalEvent: {fileID: 0}
-  m_failedOptionalDialogue: {fileID: 0}
---- !u!114 &1675876454
+  m_failedOptionalDialogue: {fileID: 1234568772}
+--- !u!114 &1234568771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8831404379647104812}
+  m_GameObject: {fileID: 1873900493546860789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b2932641f9658459188b480a3aa7a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 22721a5b205bc3c49ba37235a7d99419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_chainEvent: {fileID: 0}
   m_activateOnce: 0
   m_eventType: 0
   m_timeToActivate: 0
-  m_targetObject: {fileID: 0}
-  type: 1
---- !u!114 &2575935598978123904
+  m_knowledgeToLearn:
+    name: Dash
+    type: 1
+  m_timeOfEvent: -1
+--- !u!114 &1234568772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8831404379647104812}
+  m_GameObject: {fileID: 1873900493546860789}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1e542fe28de494a92d7e0cc53bd9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_dialogue:
-  - text: 'Welcome to the anti-fuckers club.
-
-      We promote not fucking!
-
-      If
-      you fuck then we will fucking kill you.'
+  - text: You want some of this drink bruh?
+    optionalEvent: {fileID: 1234568771}
+  - text: "Try pressing Z brother, \nit'll do something cool. "
     optionalEvent: {fileID: 0}
   m_hideDialogueOnEnd: 0
   m_endDialogueOnLeave: 0
@@ -98,7 +70,61 @@ MonoBehaviour:
   m_successOptionalDialogue: {fileID: 0}
   m_failedOptionalEvent: {fileID: 0}
   m_failedOptionalDialogue: {fileID: 0}
---- !u!1001 &6048789117276289237
+--- !u!114 &1234568773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873900493546860789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1e542fe28de494a92d7e0cc53bd9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dialogue:
+  - text: "This drinks too good brother, \nyou already had some?"
+    optionalEvent: {fileID: 0}
+  m_hideDialogueOnEnd: 0
+  m_endDialogueOnLeave: 0
+  m_nextAction: 0
+  m_knowledgeCheck:
+    name: 
+    type: 0
+  m_successOptionalEvent: {fileID: 0}
+  m_successOptionalDialogue: {fileID: 0}
+  m_failedOptionalEvent: {fileID: 0}
+  m_failedOptionalDialogue: {fileID: 0}
+--- !u!114 &6616519053672229362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873900493546860789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41eb4a4bee557f24382119f9a502364e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_canvasObject: {fileID: 1873900495408013680}
+  m_canvasText: {fileID: 1873900493888255809}
+  m_dialogueTree: {fileID: 1234568770}
+--- !u!114 &7651657217878885291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873900493546860789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7133b4ca434d94885abb92ab4a3b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_spr: {fileID: 3710825679980335922}
+  m_secondsPerCycle: 5
+--- !u!1001 &3710825680179273484
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -108,10 +134,18 @@ PrefabInstance:
     - target: {fileID: 349932606, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -7914586359189542566, guid: 93328a88f9ea0b441b69da90318a903d, type: 3}
+      objectReference: {fileID: 115972425246325791, guid: 93328a88f9ea0b441b69da90318a903d, type: 3}
+    - target: {fileID: 349932606, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349932606, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.27796605
+      objectReference: {fileID: 0}
     - target: {fileID: 2990089820882186233, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
       propertyPath: m_Name
-      value: Secret Doorman
+      value: Dash Teacher
       objectReference: {fileID: 0}
     - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
       propertyPath: m_RootOrder
@@ -119,11 +153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.51
+      value: -41.487
       objectReference: {fileID: 0}
     - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.509363
+      value: 19.514
       objectReference: {fileID: 0}
     - target: {fileID: 2990089820882186234, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -157,14 +191,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7542712771998594814, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
-      propertyPath: m_dialogueTree
-      value: 
-      objectReference: {fileID: 1675876452}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7542712771998594814, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
---- !u!1 &8831404379647104812 stripped
+--- !u!1 &1873900493546860789 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2990089820882186233, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
-  m_PrefabInstance: {fileID: 6048789117276289237}
+  m_PrefabInstance: {fileID: 3710825680179273484}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &3710825679980335922 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 349932606, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+  m_PrefabInstance: {fileID: 3710825680179273484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1873900495408013680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2990089822275812988, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+  m_PrefabInstance: {fileID: 3710825680179273484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1873900493888255809 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2990089821497124941, guid: 9c188771deec9be4f94b3743e57c03e6, type: 3}
+  m_PrefabInstance: {fileID: 3710825680179273484}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

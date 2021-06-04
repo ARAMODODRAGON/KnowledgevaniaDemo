@@ -36,7 +36,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_dialogue:
-  - text: Oh you already know how to <b>jump</b>?
+  - text: Oh you already know how to jump?
     optionalEvent: {fileID: 0}
   m_hideDialogueOnEnd: 0
   m_endDialogueOnLeave: 0
@@ -61,12 +61,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_dialogue:
-  - text: 'Want to learn how to <b>jump</b>?
+  - text: 'Want to learn how to jump?
 
-      Press <b>X</b> and I will teach
-      you'
+      Press X and I will teach you'
     optionalEvent: {fileID: 1360354954}
-  - text: Press <b>C</b> to jump!
+  - text: Press C to jump!
     optionalEvent: {fileID: 0}
   m_hideDialogueOnEnd: 0
   m_endDialogueOnLeave: 0
@@ -91,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_chainEvent: {fileID: 0}
+  m_activateOnce: 0
   m_eventType: 0
   m_timeToActivate: 0
   m_knowledgeToLearn:
