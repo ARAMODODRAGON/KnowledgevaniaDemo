@@ -40,9 +40,9 @@ public class TimerHandler : ActivateOnEvent {
 		Schedule.UpdateTimer();
 
 		// debug stuff
-		if (Input.GetKeyDown(KeyCode.G)) Schedule.ResetTimer(180);
-		if (Input.GetKey(KeyCode.H)) GameManager.TimeScale = 10f;
-		else GameManager.TimeScale = 1f;
+		//if (Input.GetKeyDown(KeyCode.G)) Schedule.ResetTimer(180);
+		//if (Input.GetKey(KeyCode.H)) GameManager.TimeScale = 10f;
+		//else GameManager.TimeScale = 1f;
 	}
 
 	private void LateUpdate() {

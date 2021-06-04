@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public static class GameManager {
 
@@ -33,7 +34,14 @@ public static class GameManager {
 	// restarts the level, always loads level in slot 0
 	// removes quests but does not remove knowledge
 	public static void RestartGame() {
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(0);
 	}
 
+	[UnityEditor.MenuItem("Play/Play From Start")]
+	public static void PlayFromStart() {
+		EditorPrefs.SetString("lastScene", SceneManager.GetActiveScene().name);
+		UnityEditor.SceneManagement.EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+		UnityEditor.SceneManagement.EditorSceneManager.OpenScene(EditorBuildSettings.scenes[0].path);
+		EditorApplication.isPlaying = true;
+	}
 }

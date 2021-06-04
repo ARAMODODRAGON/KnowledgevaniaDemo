@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	[ContextMenu("Learn Jump")]
-	private void LearnJump() {
-		KnowledgeInventory.Learn("Jump", KnowledgeType.Ability);
-	}
-
-	[ContextMenu("Learn Dash")]
-	private void LearnDash() {
-		KnowledgeInventory.Learn("Dash", KnowledgeType.Ability);
-	}
-
 	// input
 
 	[SerializeField] private InputHandler m_input = null;
@@ -77,7 +67,13 @@ public class PlayerController : MonoBehaviour {
 
 	private float m_colorTimer = 0f;
 
+	private Vector2 m_lastPos = Vector2.zero;
+	private float m_standingTimer = 0f;
+	private bool m_timespeeding = false;
+
 	private void Awake() {
+		if (!KnowledgeInventory.Contains("To Remember")) KnowledgeInventory.Learn("To Remember");
+
 		m_body = GetComponent<Rigidbody2D>();
 		m_box = GetComponent<BoxCollider2D>();
 		m_spr = GetComponent<SpriteRenderer>();
@@ -98,9 +94,27 @@ public class PlayerController : MonoBehaviour {
 
 	private void OnDestroy() {
 		if (GameManager.Player == this) GameManager.Player = null;
+		if (m_timespeeding) GameManager.TimeScale = 1f;
 	}
 
 	private void Update() {
+		// check standing
+		Vector2 newpos = new Vector2(transform.position.x, transform.position.y);
+		if (m_lastPos == newpos) {
+			m_standingTimer += GameManager.DeltaTime;
+			if (m_standingTimer > 20f) {
+				GameManager.TimeScale = 10f;
+				m_timespeeding = true;
+			}
+		} else {
+			if (m_timespeeding) {
+				m_standingTimer = 0f;
+				GameManager.TimeScale = 1f;
+				m_timespeeding = false;
+			}
+		}
+		m_lastPos = newpos;
+
 		// flip sprite
 		if (Right != Left && !IsDashing) {
 			if (Right) m_spr.flipX = false;
