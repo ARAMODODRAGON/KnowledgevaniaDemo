@@ -37,11 +37,11 @@ public static class GameManager {
 		SceneManager.LoadScene(0);
 	}
 
-	[UnityEditor.MenuItem("Play/Play From Start")]
-	public static void PlayFromStart() {
-		EditorPrefs.SetString("lastScene", SceneManager.GetActiveScene().name);
-		UnityEditor.SceneManagement.EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
-		UnityEditor.SceneManagement.EditorSceneManager.OpenScene(EditorBuildSettings.scenes[0].path);
-		EditorApplication.isPlaying = true;
-	}
+	//[UnityEditor.MenuItem("Play/Play From Start")]
+	//public static void PlayFromStart() {
+	//	EditorPrefs.SetString("lastScene", SceneManager.GetActiveScene().name);
+	//	UnityEditor.SceneManagement.EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+	//	UnityEditor.SceneManagement.EditorSceneManager.OpenScene(EditorBuildSettings.scenes[0].path);
+	//	EditorApplication.isPlaying = true;
+	//}
 }

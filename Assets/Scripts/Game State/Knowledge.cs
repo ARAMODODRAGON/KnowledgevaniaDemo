@@ -161,26 +161,26 @@ static class KnowledgeInventory {
 
 	private static Dictionary<string, Knowledge> s_knowledge = new Dictionary<string, Knowledge>();
 
-	[UnityEditor.MenuItem("Learn/Learn All")]
-	private static void LearnAll() {
-		LearnJump();
-		LearnDash();
-		LearnDoubleDash();
-	}
-
-	[UnityEditor.MenuItem("Learn/Learn Jump")]
-	private static void LearnJump() {
-		Learn("Jump", KnowledgeType.Ability);
-	}
-
-	[UnityEditor.MenuItem("Learn/Learn Dash")]
-	private static void LearnDash() {
-		Learn("Dash", KnowledgeType.Ability);
-	}
-	
-	[UnityEditor.MenuItem("Learn/Learn Double Dash")]
-	private static void LearnDoubleDash() {
-		Learn("Double Dash", KnowledgeType.Ability);
-	}
+	//[UnityEditor.MenuItem("Learn/Learn All")]
+	//private static void LearnAll() {
+	//	LearnJump();
+	//	LearnDash();
+	//	LearnDoubleDash();
+	//}
+	//
+	//[UnityEditor.MenuItem("Learn/Learn Jump")]
+	//private static void LearnJump() {
+	//	Learn("Jump", KnowledgeType.Ability);
+	//}
+	//
+	//[UnityEditor.MenuItem("Learn/Learn Dash")]
+	//private static void LearnDash() {
+	//	Learn("Dash", KnowledgeType.Ability);
+	//}
+	//
+	//[UnityEditor.MenuItem("Learn/Learn Double Dash")]
+	//private static void LearnDoubleDash() {
+	//	Learn("Double Dash", KnowledgeType.Ability);
+	//}
 
 }
