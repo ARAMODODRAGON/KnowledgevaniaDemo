@@ -39,6 +39,9 @@ MonoBehaviour:
   - text: 'Hi my names craig.
 
       Im lost and can''t find my dad.'
+    optionalEvent: {fileID: 7756472856064840467}
+  - text: "Oh yea theres a boulder that\nmight show up sooner or later \nin the path
+      ahead"
     optionalEvent: {fileID: 0}
   m_hideDialogueOnEnd: 0
   m_endDialogueOnLeave: 0
