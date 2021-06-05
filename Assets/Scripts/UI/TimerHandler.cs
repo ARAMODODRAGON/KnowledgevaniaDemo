@@ -49,7 +49,7 @@ public class TimerHandler : ActivateOnEvent {
 		// update the text
 		if (m_timerText.enabled && Mathf.Abs(m_lastTime - Schedule.Timer) > 0.001f) {
 			m_lastTime = Schedule.Timer;
-			m_timerText.text = $"Time: {Schedule.TotalMinutes}:{Schedule.Seconds}";
+			m_timerText.text = $"Time: {Schedule.TotalMinutes}:{Schedule.Seconds.ToString().PadLeft(2, '0')}";
 		}
 	}
 

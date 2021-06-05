@@ -121,7 +121,7 @@ MonoBehaviour:
   m_knowledgeToLearn:
     name: Boulder
     type: 2
-  m_timeOfEvent: 1
+  m_timeOfEvent: 2
 --- !u!1001 &4972573536937189768
 PrefabInstance:
   m_ObjectHideFlags: 0

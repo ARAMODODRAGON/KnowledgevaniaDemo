@@ -25911,7 +25911,7 @@ MonoBehaviour:
   m_knowledgeToLearn:
     name: Doomsday
     type: 2
-  m_timeOfEvent: -1
+  m_timeOfEvent: 1
 --- !u!1001 &1885434808
 PrefabInstance:
   m_ObjectHideFlags: 0

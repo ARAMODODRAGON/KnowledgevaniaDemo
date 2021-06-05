@@ -180,7 +180,7 @@ static class KnowledgeInventory {
 	
 	[UnityEditor.MenuItem("Learn/Learn Double Dash")]
 	private static void LearnDoubleDash() {
-		Learn("Dash", KnowledgeType.Ability);
+		Learn("Double Dash", KnowledgeType.Ability);
 	}
 
 }
